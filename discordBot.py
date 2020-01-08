@@ -1,12 +1,39 @@
 import discord
-import discordBot
+import os
+from dotenv import load_dotenv
 
-TOKEN = 'NjY0MzcyMzE0MDI0MDUwNjg4.XhWIGQ.t5068VJ62W2KqXMJAUUgmub2lBQ'
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    print(f'{client.user} has connected to Discord')
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{client.user} has connected to Discord\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Guild Members:\n - {members}')
+
+'''
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+'''
+    #if
+
+@client.event
+async def on_message_edit(before, message):
+    await message.channel.send("(redigeret)")
+    print(f'{before}')
 
 client.run(TOKEN)
