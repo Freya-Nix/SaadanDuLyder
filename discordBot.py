@@ -30,9 +30,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    copy = message.copy()
-
-    await message.channel.send('"{}" det er sådan du lyder.'.format(randomCap(copy)))
+    copy = message.content
+    print(message.content)
+    await message.channel.send('"{}" det er sådan du lyder.'.format(capitalization.randomCap(copy)))
 
 @client.event
 async def on_message_edit(before, message):
