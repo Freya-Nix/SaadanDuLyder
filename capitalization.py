@@ -6,4 +6,4 @@ def randomCap(sentence):
 
 
 if __name__ == '__main__':
-    randomCap()
+    print(randomCap(input()))
