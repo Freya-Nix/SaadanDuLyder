@@ -1,6 +1,7 @@
 import discord
 import os
 from dotenv import load_dotenv
+import capitalization
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -22,14 +23,16 @@ async def on_ready():
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}')
 
-'''
+
 @client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-'''
-    #if
+
+    copy = message.copy()
+
+    await message.channel.send('"{}" det er sådan du lyder.'.format(randomCap(copy)))
 
 @client.event
 async def on_message_edit(before, message):
