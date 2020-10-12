@@ -32,6 +32,7 @@ async def on_message(message):
 
     copy = message.content
     print(message.content)
+    print(message.author)
     await message.channel.send('"{}" det er sådan du lyder.'.format(capitalization.randomCap(copy)))
 
 @client.event
